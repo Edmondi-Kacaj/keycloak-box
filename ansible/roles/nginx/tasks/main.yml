@@ -6,10 +6,16 @@
     update_cache: yes
     state: present
   become: yes
+  no_log: true
   tags:
     - packages
     - root-task
     - nginx
+
+- include: credential.yml
+  become: yes
+  tags: 
+    - nginx-cert
 
 - name: Configure nginx.conf.
   become: true
