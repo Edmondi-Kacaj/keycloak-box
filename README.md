@@ -26,5 +26,8 @@ When the installation is complete (a few minutes, depending on the download spee
     password:        ch@ngEme
 ```
 
+# Documentations
+
+for more info about the specific role, including the configuration variable etc, check the link [documentation](/docs/main.md)
 
 
