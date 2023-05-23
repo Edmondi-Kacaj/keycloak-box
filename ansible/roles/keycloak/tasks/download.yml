@@ -12,6 +12,7 @@
     remote_src: yes
     src: "{{keycloak_location}}/{{keycloak_folder_name}}.zip"
     dest: "{{keycloak_location}}"
+  no_log: true
 
 
 - name: Change ownership of the "keycloak" directory.

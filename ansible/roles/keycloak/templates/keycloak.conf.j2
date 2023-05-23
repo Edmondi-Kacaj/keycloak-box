@@ -1,5 +1,5 @@
 # Basic settings for running in production. Change accordingly before deploying the server.
-
+# List of all configuration check the link https://www.keycloak.org/server/all-config
 # Database
 # The full database JDBC URL. If not provided, a default URL is set based on the selected database vendor.
 {% if keycloak_db_type == 'postgres' %}
@@ -37,15 +37,7 @@ health-enabled=true
 metrics-enabled=true
 {% endif %}
 
-# HTTPS
 
-{% if (keycloak_credential_file.certificate_file is defined and keycloak_credential_file.certificate_file != "") and (keycloak_credential_file.key_file is defined and keycloak_credential_file.key_file != "") %}
-# The file path to a server certificate or certificate chain in PEM format.
-#https-certificate-file= {{keycloak_location}}/{{keycloak_folder_name}}/cert/{{keycloak_credential_file.certificate_file}}
-
-# The file path to a private key in PEM format.
-#https-certificate-key-file={{keycloak_location}}/{{keycloak_folder_name}}/cert/{{keycloak_credential_file.key_file}}
-{%endif%}
 # The proxy address forwarding mode if the server is behind a reverse proxy.
 proxy=edge
 

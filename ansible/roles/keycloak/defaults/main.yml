@@ -1,3 +1,51 @@
+# System Group name 
+keycloak_group_name: keycloak
 
+# folder name 
+keycloak_folder_name: "keycloak-{{keycloak_version}}"
+# location in server
+keycloak_location: "/opt"
+# URL of of keycloak installation
+keycloak_url: "https://github.com/keycloak/keycloak/releases/download/{{keycloak_version | default('21.1.1',true)}}/keycloak-{{keycloak_version | default('21.1.1',true)}}.zip"
+# Keycloak config file
+keycloak_conf_file: keycloak.conf.j2
+
+# Default postgres root password
+keycloak_postgres_tmp_root_password: xxx
+# List of all configuration check the link https://www.keycloak.org/server/all-config
+# LOGS CONFIGURATION see https://www.keycloak.org/server/all-config#category-logging
+# Enable keycloak logs
+keycloak_log_enable: true
+# Log handlers, you can use more than one, example: console,file
+keycloak_log_handlers: "file"
+# Log format
+keycloak_log_format: '%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n'
+
+# Postgres database 
+keycloak_db_type: postgres
+# Postgres database port
+keycloak_postgresql_port: 5432
+# Postgres database backup, absent=deactivate / present=activate
+keycloak_backup_process_state: absent
+# Postgres database backup user
+keycloak_backup_db_user: keycloakbackup
+# Postgres database backup password
+keycloak_backup_db_password: changeme
+# Postgres database backup schedule hours
+keycloak_backup_schedule_hour: 2
+# Postgres database backup path
+keycloak_backup_path: '{{ base_dir }}/backup'
+
+
+# enable/disable keycloak heath
+keycloak_health_enabled: true
+# enable/disable keycloak metric
+keycloak_metrics_enabled: true
+# keycloak enable features, can have multiple separated by comma, 
+#  example: "token-exchange, update-email, web-authn"
+keycloak_feature_enabled: "token-exchange"
+# keycloak disable features, can have multiple separated by comma, 
+#  example: "token-exchange, update-email, web-authn"
+keycloak_feature_disabled: 
 
 
