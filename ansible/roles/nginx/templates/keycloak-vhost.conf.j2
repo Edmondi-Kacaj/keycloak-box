@@ -1,0 +1,22 @@
+upstream keycloak_app {
+    server 127.0.0.1:{{keycloak_http_port}};
+}
+
+server{
+    server_name {{keycloak_host}};
+    listen   80;
+
+    access_log             /var/log/nginx/nginx.keycloak.access.log;
+    error_log              /var/log/nginx/nginx.keycloak.error.log;
+
+    location /{{keycloak_http_relative_path}} {
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Forwarded $remote_addr;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Port $server_port;
+        proxy_pass http://keycloak_app;
+    }
+}

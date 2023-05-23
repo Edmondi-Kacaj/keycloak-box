@@ -11,4 +11,10 @@ keycloak_install_java: true
 # install postgres database
 keycloak_db_type: postgres
 
+# NGINX configuration
+# # list of configuration files
+install_nginx_server: true
+nginx_configuration_files:
+  - ['keycloak-vhost.conf.j2', 'keycloak-vhost.conf']
+
 
