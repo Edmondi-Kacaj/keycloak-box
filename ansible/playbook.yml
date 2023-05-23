@@ -6,3 +6,9 @@
     when: keycloak_install_java is defined and keycloak_install_java
     tags:
       - java
+  - role: postgres
+    when: keycloak_db_type is defined and keycloak_db_type == "postgres"
+    tags:
+      - postgres
+
+    

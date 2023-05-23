@@ -8,4 +8,7 @@ keycloak_base_dir: "{{ansible_env.HOME}}"
 # install java if is not installed in system, default will be true
 keycloak_install_java: true
 
+# install postgres database
+keycloak_db_type: postgres
+
 
