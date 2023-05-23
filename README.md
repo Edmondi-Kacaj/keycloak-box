@@ -17,7 +17,7 @@ cd keycloak-box
 vagrant up
 ```
 
-When the installation is complete (a few minutes, depending on the download speed), wordpress can be opened in the browser
+When the installation is complete (a few minutes, depending on the download speed), keycloak can be opened in the browser
 
 <http://192.168.98.117/keycloak> 
 ```sh
