@@ -1,3 +1,5 @@
+require 'yaml'
+settings = YAML.load_file 'ansible/group_vars/all.yml'
 
 Vagrant.configure("2") do |config|
 
@@ -5,7 +7,7 @@ Vagrant.configure("2") do |config|
     srv.vm.box = "debian/buster64"
     srv.ssh.insert_key = false
     srv.vm.hostname = "keycloak-box.box"
-    srv.vm.network :private_network, ip: 192.168.1.112
+    srv.vm.network :private_network, ip: settings['keycloak_host']
 
     srv.vm.provider :virtualbox do |vb|
       vb.name = "keycloak-box"
