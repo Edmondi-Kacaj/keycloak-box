@@ -1,0 +1,15 @@
+---
+- name: Ensure group "keycloak" exists
+  group:
+    name: "{{keycloak_group_name}}"
+    state: present
+
+- name: Add "keycloak" user.
+  user:
+    name: "{{keycloak_group_name}}"
+    comment: "Keycloak User"
+    system: yes
+    shell: /sbin/nologin
+    home: "{{keycloak_location}}/{{keycloak_folder_name}}"
+    group: "{{keycloak_group_name}}"
+    createhome: no

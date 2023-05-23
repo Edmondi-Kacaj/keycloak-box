@@ -1,0 +1,28 @@
+---
+- name: Ensures the keycloak directory exists.
+  file: path='{{keycloak_location}}' state=directory
+
+- name: Download keycloak sources.
+  get_url:
+    url: "{{keycloak_url}}"
+    dest: "{{keycloak_location}}/{{keycloak_folder_name}}.zip"
+
+- name: Extract keycloak sources.
+  unarchive:
+    remote_src: yes
+    src: "{{keycloak_location}}/{{keycloak_folder_name}}.zip"
+    dest: "{{keycloak_location}}"
+
+
+- name: Change ownership of the "keycloak" directory.
+  file:
+    path: "{{keycloak_location}}/{{keycloak_folder_name}}"
+    state: directory
+    recurse: yes
+    owner: "{{keycloak_group_name}}"
+    group: "{{keycloak_group_name}}"
+
+- name: Change mode of the "keycloak/bin" directory
+  file:
+    path: "{{keycloak_location}}/{{keycloak_folder_name}}/bin/"
+    mode: o+x

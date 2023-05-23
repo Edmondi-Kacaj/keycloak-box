@@ -1,0 +1,13 @@
+---
+- name: Ensures the keycloak directory in /etc exists.
+  file: path='/etc/keycloak' state=directory
+
+- name: Copy keycloak service file.
+  template:
+    src: keycloak.service.j2
+    dest: /etc/systemd/system/keycloak.service
+
+
+- name: Enable keycloak.
+  become: yes
+  shell: "systemctl daemon-reload"

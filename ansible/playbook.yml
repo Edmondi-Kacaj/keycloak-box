@@ -10,6 +10,10 @@
     when: keycloak_db_type is defined and keycloak_db_type == "postgres"
     tags:
       - postgres
+  - role: keycloak
+    become: yes
+    tags:
+      - keycloak
   - role: nginx
     when: install_nginx_server is defined and install_nginx_server
     tags:

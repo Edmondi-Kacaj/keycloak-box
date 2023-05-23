@@ -1,0 +1,76 @@
+# Basic settings for running in production. Change accordingly before deploying the server.
+
+# Database
+# The full database JDBC URL. If not provided, a default URL is set based on the selected database vendor.
+{% if keycloak_db_type == 'postgres' %}
+# The database vendor.
+db={{keycloak_db_type}}
+
+# The username of the database user.
+db-username={{keycloak_db.name}}
+
+# The password of the database user.
+db-password={{keycloak_db.password}}
+
+#db-url=jdbc:postgresql://localhost:{{keycloak_postgresql_port}}/{{keycloak_db.name}}
+db-url=jdbc:postgresql://localhost/{{keycloak_db.name}}
+{% endif %}
+
+
+{% if (keycloak_initial_admin.username is defined and keycloak_initial_admin.username != "") and 
+    (keycloak_initial_admin.password is defined and keycloak_initial_admin.password != "") %}
+admin= {{keycloak_initial_admin.username}}
+admin-password={{keycloak_initial_admin.password}}
+{%endif%}
+
+
+# Observability
+
+{% if keycloak_health_enabled is defined and keycloak_health_enabled %}
+# If the server should expose healthcheck endpoints.
+health-enabled=true
+{% endif %}
+
+# If the server should expose metrics endpoints.
+{% if keycloak_metrics_enabled is defined and keycloak_metrics_enabled %}
+# If the server should expose metrics.
+metrics-enabled=true
+{% endif %}
+
+# HTTPS
+
+{% if (keycloak_credential_file.certificate_file is defined and keycloak_credential_file.certificate_file != "") and (keycloak_credential_file.key_file is defined and keycloak_credential_file.key_file != "") %}
+# The file path to a server certificate or certificate chain in PEM format.
+#https-certificate-file= {{keycloak_location}}/{{keycloak_folder_name}}/cert/{{keycloak_credential_file.certificate_file}}
+
+# The file path to a private key in PEM format.
+#https-certificate-key-file={{keycloak_location}}/{{keycloak_folder_name}}/cert/{{keycloak_credential_file.key_file}}
+{%endif%}
+# The proxy address forwarding mode if the server is behind a reverse proxy.
+proxy=edge
+
+transaction-xa-enabled=false
+hostname-strict=true
+http-port= {{keycloak_port | default('8008',true)}}
+http-enabled=false
+http-relative-path=/{{keycloak_http_relative_path}}
+hostname-url={{ keycloak_protocol | default("http") }}://{{keycloak_host}}/{{keycloak_http_relative_path}}
+hostname-admin-url={{ keycloak_protocol | default("http") }}://{{keycloak_host}}/{{keycloak_http_relative_path}}
+
+
+{%if keycloak_feature_enabled is defined and keycloak_feature_enabled !="" %}
+features={{keycloak_feature_enabled}}
+{%endif%}
+
+
+{%if keycloak_feature_disabled is defined and keycloak_feature_disabled !="" %}
+features-disabled={{keycloak_feature_disabled}}
+{%endif%}
+
+# Logs configuration
+# see https://www.keycloak.org/server/all-config?q=log
+{% if keycloak_log_enable is defined and keycloak_log_enable %}
+log= {{keycloak_log_handlers}}
+log-file-format= {{keycloak_log_format}}
+log-file= /var/log/keycloak.log
+{%endif%}

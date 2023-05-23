@@ -1,0 +1,11 @@
+- name: restart keycloak
+  service: name=keycloak state=restarted
+  become: yes
+
+- name: reload keycloak
+  service: name=keycloak state=reloaded
+  become: yes
+
+- name: stop keycloak
+  service: name=keycloak state=stop
+  become: yes

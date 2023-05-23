@@ -1,0 +1,22 @@
+---
+
+- name: Ensure gzip and unzip.
+  package:
+    name:
+      - unzip
+      - gzip
+  tags:
+    - packages
+    - root-task
+
+- include: postgresql.yml
+- include: group_user.yml
+- include: download.yml
+- include: credential.yml
+  become: yes
+- include: configuration.yml
+- include: keycloak_systemd_service.yml
+
+- name: Restart keycloak.service
+  become: yes
+  shell: "systemctl restart keycloak.service"

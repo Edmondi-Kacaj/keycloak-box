@@ -1,0 +1,25 @@
+[Unit]
+Description=Keycloak
+After=syslog.target network.target
+Before=httpd.service
+
+[Service]
+User={{keycloak_group_name}}
+Group={{keycloak_group_name}}
+{% if (keycloak_initial_admin.username is defined and keycloak_initial_admin.username != "") and 
+    (keycloak_initial_admin.password is defined and keycloak_initial_admin.password != "") %}
+Environment=KEYCLOAK_ADMIN={{keycloak_initial_admin.username}}
+Environment=KEYCLOAK_ADMIN_PASSWORD={{keycloak_initial_admin.password}}
+{%endif%}
+LimitNOFILE=102642
+PIDFile=/var/run/keycloak/keycloak.pid
+# build before starting the app
+ExecStartPre= {{keycloak_location}}/{{keycloak_folder_name}}/bin/kc.sh build
+# now we start for production
+ExecStart={{keycloak_location}}/{{keycloak_folder_name}}/bin/kc.sh start  --optimized
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=keycloak
+
+[Install]
+WantedBy=multi-user.target

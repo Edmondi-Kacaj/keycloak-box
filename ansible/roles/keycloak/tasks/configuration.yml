@@ -1,0 +1,5 @@
+--- 
+- name: Copy keycloak configuration file.
+  template:
+    src: keycloak.conf.j2
+    dest: "{{keycloak_location}}/{{keycloak_folder_name}}/conf/keycloak.conf"
