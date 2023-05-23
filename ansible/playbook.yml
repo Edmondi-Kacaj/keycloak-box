@@ -1,0 +1,8 @@
+
+- hosts: all
+  roles:
+  - role: geerlingguy.java
+    become: yes
+    when: keycloak_install_java is defined and keycloak_install_java
+    tags:
+      - java

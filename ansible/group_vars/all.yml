@@ -5,6 +5,7 @@ keycloak_host: 192.168.98.112
 # keycloak base directory
 keycloak_base_dir: "{{ansible_env.HOME}}"
 
-
+# install java if is not installed in system, default will be true
+keycloak_install_java: true
 
 
