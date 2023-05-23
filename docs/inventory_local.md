@@ -21,14 +21,14 @@ keycloak:
   
       # initial user administration
       keycloak_initial_admin:
-      username: admin
-      password: ch@ngEme
+        username: admin
+        password: ch@ngEme
   
       # keycloak database configuration
       keycloak_db:
-      name: keycloak
-      user: keycloak
-      password: keycloak
+        name: keycloak
+        user: keycloak
+        password: keycloak
   
       # keycloak port
       keycloak_http_port: 8008
