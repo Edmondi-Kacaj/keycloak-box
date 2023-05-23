@@ -21,3 +21,14 @@
     ├── docs                   # Documentation folder
     ├── inventory_local.yml    # a example of inventory used by ansible to install the keycloak locally in Virtual machine (Works only in Linux/Mac)
     └── README.md              # a readme me file
+
+## Documentation
+
+For each role you can find the documentation, and variables that you can use in order to adjust base in your needs
+
+* [GROUP_VARS](/docs/group_vars/main.md)
+* [NGINX](/docs/nginx/main.md)
+* [POSTGRES](/docs/postgres/main.md)
+* [KEYCLOAK](/docs/keycloak/main.md)
+* [PLAYBOOK](/docs/playbook.md)
+* [INVENTORY_LOCAL](/docs/inventory_local.md)
