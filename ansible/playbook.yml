@@ -3,19 +3,17 @@
   roles:
   - role: geerlingguy.java
     become: yes
-    when: keycloak_install_java is defined and keycloak_install_java
     tags:
       - java
   - role: postgres
     when: keycloak_db_type is defined and keycloak_db_type == "postgres"
     tags:
       - postgres
+  - role: nginx
+    tags:
+      - nginx
   - role: keycloak
     become: yes
     tags:
       - keycloak
-  - role: nginx
-    when: install_nginx_server is defined and install_nginx_server
-    tags:
-      - nginx
     
