@@ -4,6 +4,7 @@
   package:
     name: postgresql
     state: present
+  no_log: true
   tags:
   - packages
   - root-task
