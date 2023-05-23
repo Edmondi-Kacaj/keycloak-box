@@ -38,3 +38,15 @@ keycloak:
 ```
 
 As I mention above here you can use the default variable from each roles if you want to override them.
+
+
+## Example of running
+
+you need to have ansible installed in you computer. (maybe ansible in Windows will not work)
+then you can: 
+```sh
+    # First install requirement
+     ansible-galaxy install -r requirements.yml
+    #  then you just run the ansible-playbook
+     ansible-playbook -v -i inventory_local.yml ansible/playbook.yml 
+```
