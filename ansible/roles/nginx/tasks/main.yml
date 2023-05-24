@@ -12,11 +12,6 @@
     - root-task
     - nginx
 
-- include: credential.yml
-  become: yes
-  tags: 
-    - nginx-cert
-
 - name: Configure nginx.conf.
   become: true
   template:

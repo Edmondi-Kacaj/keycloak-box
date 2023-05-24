@@ -4,16 +4,7 @@ upstream keycloak_app {
 
 server{
     server_name {{keycloak_host}};
-
-{%if (nginx_certificate_file is defined and nginx_certificate_file != "" and nginx_certificate_file != None) and 
-(nginx_key_file is defined and nginx_key_file != "" and nginx_key_file != None)%}
-     listen   443 ssl;
-     ssl on;
-     ssl_certificate      /etc/nginx/certs/{{nginx_certificate_file}};
-     ssl_certificate_key  /etc/nginx/certs/{{nginx_key_file}};
-{%else%}
      listen   80;
-{%endif%}
     access_log             /var/log/nginx/nginx.keycloak.access.log;
     error_log              /var/log/nginx/nginx.keycloak.error.log;
 
