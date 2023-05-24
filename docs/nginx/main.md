@@ -25,27 +25,3 @@ nginx_configuration_files:
 
 # Since we are using variable, inside the file, we are using .j2 template so ansible will replace those variables 
 ```
-
-```yml
-
-
-# Generate and paste the crt.pem and key.pem into files folder if you want to use ssl configuration
-# Give the files name 
-#  example:
-#nginx_certificate_file: cert.pem
-#nginx_key_file: key.pem
-
-nginx_certificate_file:
-# Nginx certificate key file
-nginx_key_file:
-
-
-# If you want to override them, then copy this variable, into inventory_<local,test,prod>.yml, and give you own certificates files.
-
-#example: 
-nginx_certificate_file: <path>/crt.pem
-nginx_key_file: <path>/key.pem
-
-
-```
-
